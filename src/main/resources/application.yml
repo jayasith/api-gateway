@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      routes:
+        - id: auth
+          uri: lb://AUTH
+          predicates:
+            - path=/api/v1.0/auth/**
+        - id: movie
+          uri: lb://MOVIE
+          predicates:
+            - path=/api/v1.0/product/**
+        - id: notification
+          uri: lb://NOTIFICATION
+          predicates:
+            - path=/api/v1.0/notification/**
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:9090/eureka
